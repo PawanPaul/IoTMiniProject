@@ -14,10 +14,11 @@ document.getElementById("homeload").innerHTML+="<div id='ihold'><a href='"+catal
 function traverse(){
     termlist=document.getElementById("search").value;
     var s=0;
-    const reject=[],seek=[],terms=[];
+    const reject=[],seek=[],terms=[],active=[0,0,0],eval=[0,0,0,0,0,0,0,0];
     for(var i=0;i<termlist.length;i++){
         if(termlist.charAt(i)==' '){
             var val=termlist.substring(s,i);
+            val=val.trim();
                 if(val.charAt(0)=='-')
                 reject.push(termlist.substring(s+1,i));
                 else if(val.charAt(0)=='+')
@@ -28,6 +29,7 @@ function traverse(){
         }
         else if(i==termlist.length-1){
             var val=termlist.substring(s,i+1);
+            val=val.trim();
                 if(val.charAt(0)=='-')
                 reject.push(termlist.substring(s+1,i+1));
                 else if(val.charAt(0)=='+')
@@ -40,4 +42,55 @@ function traverse(){
     document.getElementById("res1").innerHTML=reject;
     document.getElementById("res2").innerHTML=seek;
     document.getElementById("res3").innerHTML=terms;
+    if(terms.length>0)
+    active[0]=1;
+    if(seek.length>0)
+    active[1]=1;
+    if(reject.length>0)
+    active[2]=1;
+
+    if(active[2]==1){
+        for(let i=0;i<reject.length;i++){
+            for(let j=0;j<8;j++){
+                for(let k=0;k<3;k++){
+                    if(reject[i].toLowerCase()===catalog[j][1][k].toLowerCase()){
+                        eval[j]=-1;
+                    }
+                }
+            }
+        }
+    }
+
+    if(active[1]==1){
+        for(let i=0;i<seek.length;i++){
+            for(let j=0;j<8;j++){
+                for(let k=0;k<3;k++){
+                    if(seek[i].toLowerCase()===catalog[j][1][k].toLowerCase()&&eval[j]!=-1){
+                        eval[j]=1;
+                    }
+                }
+            }
+        }
+    }
+
+    if(active[0]==1){
+        for(let i=0;i<terms.length;i++){
+            for(let j=0;j<8;j++){
+                for(let k=0;k<3;k++){
+                    if(terms[i].toLowerCase()===catalog[j][1][k].toLowerCase()&&eval[j]!=-1){
+                        if(active[1]==1&&eval[j]==1){
+                        eval[j]=1;
+                        }
+                        else if(active[1]==1&&eval[j]!=1){
+                        }
+                        else{
+                            eval[j]=1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    alert(eval);
 }
