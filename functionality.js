@@ -62,15 +62,24 @@ function traverse(){
     }
 
     if(active[1]==1){
-        for(let i=0;i<seek.length;i++){
             for(let j=0;j<8;j++){
                 for(let k=0;k<3;k++){
-                    if(seek[i].toLowerCase()===catalog[j][1][k].toLowerCase()&&eval[j]!=-1){
+                    if(seek[0].toLowerCase()===catalog[j][1][k].toLowerCase()&&eval[j]!=-1){
                         eval[j]=1;
                     }
                 }
             }
-        }
+            for(let i=0;i<seek.length;i++){
+                for(let j=0;j<8;j++){
+                    for(let k=0;k<3;k++){
+                        if(seek[i].toLowerCase()===catalog[j][1][k].toLowerCase()){
+                            if(eval[j]!=1){
+                                eval[j]=-1;
+                            }
+                        }
+                    }
+                }
+            }
     }
 
     if(active[0]==1){
@@ -82,6 +91,7 @@ function traverse(){
                         eval[j]=1;
                         }
                         else if(active[1]==1&&eval[j]!=1){
+                            eval[j]=-1;
                         }
                         else{
                             eval[j]=1;
