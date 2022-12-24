@@ -4,7 +4,7 @@ const catalog = [['Spy x Family',['Anime','Action','SliceofLife'],'Images/Spyxfa
 ['Ouran High School Host Club',['Anime','SliceofLife','Romcom'],'Images/ouran.jpg','content/ouran.html'],
 ['Castle',['Mystery','Comedy','Drama'],'Images/castle.jpg','content/castle.html'],
 ['Dr Who',['Adventure','Scifi','Drama'],'Images/drwho.jpg','content/drwho.html'],
-['The Big Bang Theory',['Sitcom','Comedy','American'],'Images/bigbangtheory.jpg','content/bigbang.html'],
+['The Big Bang Theory',['Sitcom','Comedy','American'],'Images/bigbangtheory.jpg','content/bbt.html'],
 ['How I met your mother',['Sitcom','Comedy','Romance'],'Images/howimetyourmother.jpg','content/himym.html']];
 
 /*for(i=0;i<8;i++){
