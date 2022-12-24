@@ -1,11 +1,11 @@
-const catalog = [['Spy x Family',['Anime','Action','SliceofLife'],'Images/Spyxfam.webp','spyxfam.html'],
-['Sword Art Online',['Anime','Action','MMORPG'],'Images/sao.jpg','sao.html'],
-['The Disastorous Life of Saki K',['Anime','SliceofLife','Supernatural'],'Images/saikik.jpg','saiki.html'],
-['Ouran High School Host Club',['Anime','SliceofLife','Romcom'],'Images/ouran.jpg','ouran.html'],
-['Castle',['Mystery','Comedy','Drama'],'Images/castle.jpg','castle.html'],
-['Dr Who',['Adventure','Scifi','Drama'],'Images/drwho.jpg','drwho.html'],
-['The Big Bang Theory',['Sitcom','Comedy','American'],'Images/bigbangtheory.jpg','bigbang.html'],
-['How I met your mother',['Sitcom','Comedy','Romance'],'Images/howimetyourmother,jpg','howimet.html']];
+const catalog = [['Spy x Family',['Anime','Action','SliceofLife'],'Images/Spyxfam.webp','content/spyxfam.html'],
+['Sword Art Online',['Anime','Action','MMORPG'],'Images/sao.jpg','content/sao.html'],
+['The Disastorous Life of Saki K',['Anime','SliceofLife','Supernatural'],'Images/saikik.jpg','content/saiki.html'],
+['Ouran High School Host Club',['Anime','SliceofLife','Romcom'],'Images/ouran.jpg','content/ouran.html'],
+['Castle',['Mystery','Comedy','Drama'],'Images/castle.jpg','content/castle.html'],
+['Dr Who',['Adventure','Scifi','Drama'],'Images/drwho.jpg','content/drwho.html'],
+['The Big Bang Theory',['Sitcom','Comedy','American'],'Images/bigbangtheory.jpg','content/bigbang.html'],
+['How I met your mother',['Sitcom','Comedy','Romance'],'Images/howimetyourmother.jpg','content/himym.html']];
 
 /*for(i=0;i<8;i++){
 document.getElementById("homeload").innerHTML+="<div id='ihold'><a href='"+catalog[i][3]+"'><img src='"+catalog[i][2]+"'></a><div><h2>"+catalog[i][0]+"</h2><h4>"+catalog[i][1][0]+" "+catalog[i][1][1]+" "+catalog[i][1][2]+"</h4></div></div>";
@@ -39,9 +39,9 @@ function traverse(){
                 s=i+1;
         }
     }
-    document.getElementById("res1").innerHTML=reject;
-    document.getElementById("res2").innerHTML=seek;
-    document.getElementById("res3").innerHTML=terms;
+    document.getElementById("res1").innerHTML="Exclude Tags: "+reject;
+    document.getElementById("res2").innerHTML="Include Tags: "+seek;
+    document.getElementById("res3").innerHTML="Search Terms: "+terms;
     if(terms.length>0)
     active[0]=1;
     if(seek.length>0)
@@ -69,38 +69,47 @@ function traverse(){
                     }
                 }
             }
-            for(let i=0;i<seek.length;i++){
+            if(seek.length>1){
+                var ck=0;
+            for(let i=1;i<seek.length;i++){
                 for(let j=0;j<8;j++){
                     for(let k=0;k<3;k++){
                         if(seek[i].toLowerCase()===catalog[j][1][k].toLowerCase()){
-                            if(eval[j]!=1){
-                                eval[j]=-1;
-                            }
+                           ck=1;                              
                         }
                     }
-                }
-            }
-    }
-
-    if(active[0]==1){
-        for(let i=0;i<terms.length;i++){
-            for(let j=0;j<8;j++){
-                for(let k=0;k<3;k++){
-                    if(terms[i].toLowerCase()===catalog[j][1][k].toLowerCase()&&eval[j]!=-1){
-                        if(active[1]==1&&eval[j]==1){
-                        eval[j]=1;
-                        }
-                        else if(active[1]==1&&eval[j]!=1){
-                            eval[j]=-1;
-                        }
-                        else{
-                            eval[j]=1;
-                        }
+                    if(eval[j]==1&&ck!=1){
+                        eval[j]=-1;
                     }
+                    ck=0;
                 }
             }
         }
     }
 
-    alert(eval);
+    if(active[0]==1){
+        
+    }
+
+    var outlist="";
+    
+        if(active[2]==1&&active[1]==0&&active[0]==0){
+            for(let i=0;i<8;i++){
+                if(eval[i]>-1)
+                  outlist+=htmltemplate(catalog[i][3],catalog[i][2]);
+            }
+        }
+        else{
+            for(let i=0;i<8;i++){
+            if(eval[i]==1)
+            outlist+=htmltemplate(catalog[i][3],catalog[i][2]);
+            }
+        }
+    document.getElementById("reshold").innerHTML=outlist;
+}
+
+function htmltemplate(ref,sauce){
+    var template="<span id='ihold'><a href="+ref+"><img src='"+sauce+"'></a></span>";
+
+    return template;
 }
