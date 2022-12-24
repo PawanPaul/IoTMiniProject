@@ -1,6 +1,6 @@
 const catalog = [['Spy x Family',['Anime','Action','SliceofLife'],'Images/Spyxfam.webp','content/spyxfam.html'],
 ['Sword Art Online',['Anime','Action','MMORPG'],'Images/sao.jpg','content/sao.html'],
-['The Disastorous Life of Saki K',['Anime','SliceofLife','Supernatural'],'Images/saikik.jpg','content/saiki.html'],
+['The Disastorous Life of Saiki K',['Anime','SliceofLife','Supernatural'],'Images/saikik.jpg','content/saiki.html'],
 ['Ouran High School Host Club',['Anime','SliceofLife','Romcom'],'Images/ouran.jpg','content/ouran.html'],
 ['Castle',['Mystery','Comedy','Drama'],'Images/castle.jpg','content/castle.html'],
 ['Dr Who',['Adventure','Scifi','Drama'],'Images/drwho.jpg','content/drwho.html'],
