@@ -39,9 +39,6 @@ function traverse(){
                 s=i+1;
         }
     }
-    document.getElementById("res1").innerHTML="Exclude Tags: "+reject;
-    document.getElementById("res2").innerHTML="Include Tags: "+seek;
-    document.getElementById("res3").innerHTML="Search Terms: "+terms;
     if(terms.length>0)
     active[0]=1;
     if(seek.length>0)
