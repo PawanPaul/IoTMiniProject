@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html>
-<style>
-    img {
-        width: 23%;
-        padding: 5%;
-        height: 15%;
-    }
-</style>
 
 <head>
     <title>Quicksearch</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div><input id="search" type="text"><button onclick="traverse()">Submit</button></div>
+    <div id="searchBar">
+        <input id="search" type="text">
+        <button onclick="traverse()">
+            <img id='icon' src="Images/search.png" alt="P">    
+        </button>
+    </div>
     <div id="res1"></div>
     <div id="res2"></div>
     <div id="res3"></div>
     <div id="reshold">
-    <span id='ihold'><a href="content/spyxfam.html"><img src="Images/Spyxfam.webp"></a></span>
-    <span id='ihold'><a href="content/sao.html"><img src="Images/sao.jpg"></a></span>
-    <span id='ihold'><a href="content/saikik.html"><img src="Images/saikik.jpg"></a></span>
-    <span id='ihold'><a href="content/ouran.html"><img src="Images/ouran.jpg"></a></span>
-    <span id='ihold'><a href="content/castle.html"><img src="Images/castle.jpg"></a></span>
-    <span id='ihold'><a href="content/drwho.html"><img src="Images/drwho.jpg"></a></span>
-    <span id='ihold'><a href="content/bbt.html"><img src="Images/bigbangtheory.jpg"></a></span>
-    <span id='ihold'><a href="content/himym.html"><img src="Images/howimetyourmother.jpg"></a></span>
+        <span id='ihold'><a href="content/spyxfam.html"><img src="Images/Spyxfam.webp"></a></span>
+        <span id='ihold'><a href="content/sao.html"><img src="Images/sao.jpg"></a></span>
+        <span id='ihold'><a href="content/saikik.html"><img src="Images/saikik.jpg"></a></span>
+        <span id='ihold'><a href="content/ouran.html"><img src="Images/ouran.jpg"></a></span>
+        <span id='ihold'><a href="content/castle.html"><img src="Images/castle.jpg"></a></span>
+        <span id='ihold'><a href="content/drwho.html"><img src="Images/drwho.jpg"></a></span>
+        <span id='ihold'><a href="content/bbt.html"><img src="Images/bigbangtheory.jpg"></a></span>
+        <span id='ihold'><a href="content/himym.html"><img src="Images/howimetyourmother.jpg"></a></span>
     </div>
 </body>
 <script type="text/javascript" src="functionality.js"></script>
