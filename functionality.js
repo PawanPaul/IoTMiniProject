@@ -59,6 +59,10 @@ function traverse(){
                 }
             }
         }
+        for(let i=0;i<8;i++){
+            if(eval[i]!=-1)
+            eval[i]=1;
+        }
     }
 
     if(active[1]==1){
@@ -68,6 +72,10 @@ function traverse(){
                         eval[j]=1;
                     }
                 }
+            }
+            for(let i=0;i<8;i++){
+                if(eval[i]!=1)
+                eval[i]=-1;
             }
             if(seek.length>1){
                 var ck=0;
@@ -88,23 +96,63 @@ function traverse(){
     }
 
     if(active[0]==1){
+        const letter=[[],[],[],[],[],[],[],[]],loclet=[];
+        var st=0;
+        for(let i=0;i<8;i++){
+            for(let l=0;l<catalog[i][0].length;l++){
+                if(catalog[i][0].charAt(l)==' '){
+                    var val=catalog[i][0].substring(st,l);
+                    val=val.trim();
+                    loclet.push(val);
+                    st=l+1;
+                }
+                else if(l==catalog[i][0].length-1){
+                    var val=catalog[i][0].substring(st,l+1);
+                    val=val.trim();
+                    loclet.push(val);
+                }
+            }
+            st=0;
+            while(loclet.length>0){
+                letter[i].push(loclet.pop());
+            }
+        }
+
+        for(let i=0;i<8;i++){
+            var ck=0
+            for(let j=0;j<letter[i].length;j++){
+                if(letter[i][j].toLowerCase()===terms[0].toLowerCase()&&eval[i]!=-1){
+                ck=1;
+                }
+            }
+            if(ck==1)
+            eval[i]=1;
+            if(ck!=1&&eval[i]==1)
+            eval[i]=-1;
+            ck=0;
+        }
         
+        if(terms.length>1){
+            var ck=0;
+        for(let i=0;i<8;i++){
+            for(let j=0;j<letter[i].length;j++){
+                for(let k=1;k<terms.length;k++){
+                    if(letter[i][j].toLowerCase()===terms[k].toLowerCase())
+                    ck=1;
+                }
+                if(eval[1]==1&&ck!=1)
+                eval[i]=-1;
+                ck=0;
+            }
+        }
+      }
     }
 
     var outlist="";
-    
-        if(active[2]==1&&active[1]==0&&active[0]==0){
-            for(let i=0;i<8;i++){
-                if(eval[i]>-1)
-                  outlist+=htmltemplate(catalog[i][3],catalog[i][2]);
-            }
-        }
-        else{
-            for(let i=0;i<8;i++){
-            if(eval[i]==1)
-            outlist+=htmltemplate(catalog[i][3],catalog[i][2]);
-            }
-        }
+    for(let i=0;i<8;i++){ 
+    if(eval[i]==1)
+        outlist+=htmltemplate(catalog[i][3],catalog[i][2]);
+    }
     document.getElementById("reshold").innerHTML=outlist;
 }
 
