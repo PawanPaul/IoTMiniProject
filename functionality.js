@@ -67,11 +67,17 @@ function traverse(){
 
     if(active[1]==1){
             for(let j=0;j<8;j++){
+                var ck=0;
                 for(let k=0;k<3;k++){
                     if(seek[0].toLowerCase()===catalog[j][1][k].toLowerCase()&&eval[j]!=-1){
-                        eval[j]=1;
+                        ck=1;
                     }
                 }
+                if(ck==1)
+                  eval[j]=1;
+                if(ck!=1&&eval[j]==1)
+                  eval[j]=-1;
+                ck=0;
             }
             for(let i=0;i<8;i++){
                 if(eval[i]!=1)
